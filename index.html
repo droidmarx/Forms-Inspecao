@@ -122,38 +122,98 @@
             <label>Número de Série:</label> <input type="text" id="n_serie">
             <label>Data de aferição:</label> <input type="date" id="data_afericao">
         </div>
+		<div class="form-group">
+            <label>Número Contador de Descarga Antes Fase A:</label> <input type="text" id="ContadorA1">
+            <label>Número Contador de Descarga Antes Fase B:</label> <input type="text" id="ContadorB1">
+            <label>Número Contador de Descarga Antes Fase V:</label> <input type="text" id="ContadorV1">
+            <label>Número Contador de Descarga Antes Fase R:</label> <input type="text" id="ContadorR1">
+			<label>Número Contador de Descarga Depois Fase A:</label> <input type="text" id="ContadorA2">
+            <label>Número Contador de Descarga Depois Fase B:</label> <input type="text" id="ContadorB2">
+            <label>Número Contador de Descarga Depois Fase V:</label> <input type="text" id="ContadorV2">
+            <label>Número Contador de Descarga Depois Fase R:</label> <input type="text" id="ContadorR2">
+        </div>
 
         <div class="form-group">
             <label>Dados de Placa Fase A:</label> 
             <select id="dados_placa_a"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
-
             <label>Dados de Placa Fase B:</label> 
             <select id="dados_placa_b"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
-        </div>
-
-        <div class="form-group">
             <label>Dados de Placa Fase V:</label> 
             <select id="dados_placa_v"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
-
             <label>Dados de Placa Fase R:</label> 
             <select id="dados_placa_r"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+        </div>
+		<div class="form-group">
+            <label>Condições de Pintura Fase A:</label> 
+            <select id="pintura_a"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Condições de Pintura Fase B:</label> 
+            <select id="Pintura_b"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Condições de Pintura Fase V:</label> 
+            <select id="Pintura_v"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Condições de Pintura Fase R:</label> 
+            <select id="Pintura_r"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
         </div>
 
         <div class="form-group">
             <label>Isoladores Fase A:</label> 
             <select id="isoladores_a"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
-
             <label>Isoladores Fase B:</label> 
             <select id="isoladores_b"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
-        </div>
-
-        <div class="form-group">
             <label>Isoladores Fase V:</label> 
             <select id="isoladores_v"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
-
             <label>Isoladores Fase R:</label> 
             <select id="isoladores_r"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
         </div>
+	        <div class="form-group">
+            <label>Fixação/montagem (alinhamento/nivelamento) FASE A:</label> 
+            <select id="fixacao_a"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Fixação/montagem (alinhamento/nivelamento) FASE B:</label> 
+            <select id="fixacao_b"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Fixação/montagem (alinhamento/nivelamento) FASE V:</label> 
+            <select id="fixacao_v"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Fixação/montagem (alinhamento/nivelamento) FASE R:</label> 
+            <select id="fixacao_r"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+        </div>
+	        <div class="form-group">
+            <label>Aterramento FASE A:</label> 
+            <select id="terra_a"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Aterramento FASE B:</label> 
+            <select id="terra_b"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Aterramento FASE V:</label> 
+            <select id="terra_v"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Aterramento FASE R:</label> 
+            <select id="terra_r"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+        </div>
+	        <div class="form-group">
+            <label>Condições dos cabos e conexões FASE A:</label> 
+            <select id="cabos_a"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Condições dos cabos e conexões FASE B:</label> 
+            <select id="cabos_b"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Condições dos cabos e conexões FASE V:</label> 
+            <select id="cabos_v"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Condições dos cabos e conexões FASE R:</label> 
+            <select id="cabos_r"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+        </div>
+		    <div class="form-group">
+            <label>Re-aperto dos terminais FASE A:</label> 
+            <select id="aperto_a"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Re-aperto dos terminais FASE B:</label> 
+            <select id="aperto_b"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Re-aperto dos terminais FASE V:</label> 
+            <select id="aperto_v"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Re-aperto dos terminais FASE R:</label> 
+            <select id="aperto_r"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+        </div>
+		<div class="form-group">
+            <label>Isoladores FASE A:</label> 
+            <select id="iso_a"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Isoladores FASE B:</label> 
+            <select id="iso_b"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Isoladores FASE V:</label> 
+            <select id="iso_v"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+            <label>Isoladores FASE R:</label> 
+            <select id="iso_r"><option value="OK">OK</option><option value="NÃO OK">NÃO OK</option></select>
+        </div
     </form>
 </div>
 
