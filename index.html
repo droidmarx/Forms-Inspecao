@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Notificação Shopee</title>
+  <link rel="icon" href="https://cf.shopee.com.br/file/5c3db8bfb74f5f9e68b20a1f3cfb867d" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
+  
     :root {
       --bg: #f4f7fa;
       --text: #333;
@@ -125,6 +127,12 @@
         font-size: 14px;
       }
     }
+    .botoes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
   </style>
 </head>
 
@@ -209,13 +217,19 @@
     }
 
     async function obterEndereco(lat, lng) {
-      const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&accept-language=pt-BR`;
-      const res = await fetch(url, {
-        headers: { 'User-Agent': 'Shopee-App-Mobile' }
-      });
-      const data = await res.json();
-      return data.display_name || "Endereço não encontrado";
-    }
+  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&accept-language=pt-BR`;
+  const res = await fetch(url, {
+    headers: { 'User-Agent': 'Shopee-App-Mobile' }
+  });
+  const data = await res.json();
+
+  const endereco = data.address;
+  const rua = endereco.road || endereco.pedestrian || endereco.footway || "Rua não encontrada";
+  const numero = endereco.house_number ? `, ${endereco.house_number}` : "";
+  const bairro = endereco.suburb || endereco.neighbourhood || endereco.city_district || "";
+
+  return `${rua}${numero}${bairro ? ` - ${bairro}` : ""}`;
+}
 
     function salvarHistorico(numero, endereco, lat, lng) {
       const agora = new Date().toLocaleString("pt-BR");
@@ -226,19 +240,20 @@
     }
 
     function mostrarHistorico() {
-      const lista = document.getElementById("listaHistorico");
-      const termoBusca = document.getElementById("busca").value.toLowerCase();
-      const historico = JSON.parse(localStorage.getItem("historicoEnvios")) || [];
-      document.getElementById("historico").style.display = "block";
-      lista.innerHTML = historico
-        .filter(item => item.numero.includes(termoBusca))
-        .map(item => `
-        <div class="registro">
-          <input type="checkbox" data-id="${item.id}">
-          <strong>${item.numero}</strong> - ${item.data}<br>
-          ${item.endereco || ""}<br>
-          ${item.mapsLink ? `<a href="${item.mapsLink}" target="_blank" class="maps-link"><i class="fa-solid fa-map-location-dot"></i> Ver no Mapa</a>` : ""}
-          <br>
+  const lista = document.getElementById("listaHistorico");
+  const termoBusca = document.getElementById("busca").value.toLowerCase();
+  const historico = JSON.parse(localStorage.getItem("historicoEnvios")) || [];
+  document.getElementById("historico").style.display = "block";
+  lista.innerHTML = historico
+    .filter(item => item.numero.includes(termoBusca))
+    .map(item => `
+      <div class="registro">
+        <input type="checkbox" data-id="${item.id}">
+        <strong>${item.numero}</strong> - ${item.data}<br>
+        ${item.endereco || ""}<br>
+        ${item.mapsLink ? `<a href="${item.mapsLink}" target="_blank" class="maps-link"><i class="fa-solid fa-map-location-dot"></i> Ver no Mapa</a>` : ""}
+        <br>
+        <div class="botoes-grid">
           <button class="btn-secondary" onclick="enviarAusente('${item.numero}')">
             <i class="fa-regular fa-bell-slash"></i> Ausente
           </button>
@@ -246,8 +261,9 @@
             <i class="fa-solid fa-user-group"></i> No Vizinho
           </button>
         </div>
-      `).join("");
-    }
+      </div>
+    `).join("");
+}
 
     function excluirSelecionados() {
       const checkboxes = document.querySelectorAll('.registro input[type="checkbox"]:checked');
