@@ -1,286 +1,327 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-  
-    <meta charset="UTF-8"> 
-   <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-     <meta name="theme-color" content="#0077CC">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notificação Shopee</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #f4f7fa;
+      --text: #333;
+      --card: #fff;
+      --btn-primary: #27ae60;
+      --btn-secondary: #3498db;
+      --btn-delete: #e74c3c;
+    }
 
-   
-     <link rel="icon" href="https://img.icons8.com/?size=160&id=19Dh8LZsDWJn&format=png" type="image/png">
-     
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-   <style>
-   	
-   	 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    [data-theme="dark"] {
+      --bg: #1e1e1e;
+      --text: #f1f1f1;
+      --card: #2c2c2c;
+    }
 
-::-webkit-scrollbar {
-  display: none;
-}
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 15px;
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
 
+    h2, h3 {
+      text-align: center;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
 
-body {
-  font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  min-width: 300px;
-  margin: 5rem auto;
-  padding: 20px;
-  background-color: #FFFFFF83;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
-  animation: 0.5s ease;
-  animation-name: slideout;
-  align-items: center;
-}
+    .form-section, .historico-section {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
 
-h2 {
-  text-decoration: none;
-  text-align: center;
-  margin:1rem;
-  animation: 0.7s ease;
-  animation-name: slideout;
-}
+    input[type="tel"], input[type="text"] {
+      width: 70%;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
 
-@keyframes slideout {
-  1% {
-    scale: 9;
-  }
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-  100% {
-    scale: 1;
-  }
-}
+    button {
+      flex: 1;
+      padding: 12px;
+      font-size: 15px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.2s ease, background 0.3s ease;
+      cursor: pointer;
+    }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
+    .btn-primary { background: var(--btn-primary); }
+    .btn-primary:hover { background: #2ecc71; transform: scale(1.03); }
 
-label {
-  margin: 5px;
-  font-weight: bold;
-}
+    .btn-secondary { background: var(--btn-secondary); }
+    .btn-secondary:hover { background: #5dade2; }
 
-.container{
-  width: 100%
-}
+    .btn-delete { background: var(--btn-delete); }
+    .btn-delete:hover { background: #ec7063; }
 
-input[type="text"],
-input[type="password"] {
-  background: #FFF;
-  color: #000;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #000000;
-  margin-bottom: 10px;
-  text-align: center;
-  outline: transparent;
-}
+    .registro {
+      background: #f0f0f0;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      position: relative;
+      color: #000;
+    }
 
+    [data-theme="dark"] .registro {
+      background: #3c3c3c;
+      color: #fff;
+    }
 
+    .registro input[type="checkbox"] {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      transform: scale(1.4);
+    }
 
-input[type="text"].blinking,
-input[type="password"].blinking {
-  animation: blink 2s linear infinite;
-  caret-color: grey;
-  color:transparent;
-}
+    .maps-link {
+      display: inline-block;
+      margin-top: 6px;
+      color: #2980b9;
+      text-decoration: none;
+    }
 
+    .maps-link:hover {
+      text-decoration: underline;
+    }
 
+    .theme-toggle {
+      text-align: center;
+      margin-bottom: 10px;
+    }
 
-@keyframes blink {
-  0% {
-    border-color: #FFFFFF;
-  }
-  50% {
-    border-color: #0077CC;
-    color: #0077CC;
-  }
-  100% {
-    border-color: #FFFFFF;
-  }
-}
-
-
-button[type="submit"] {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #0077cc;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-[type="submit"]:hover {
-  background-color: #42445A;
-}
-
-.blur {
-  filter: blur(10px);
-  transition: filter 0.6s ease-in-out;
-  animation-duration: 3s;
-  animation-name: slidein;
-}
-
-@keyframes slidein {
-  1% {
-    scale: 1;
-    filter: blur(2px);
-  }
-
-  100% {
-    scale: 50;
-    filter: blur(10px);
-  }
-}
-   	
-   	
-   </style>
-   
-   
-<head>
-  <meta charset="utf-8">
-  <title>Net System</title>
-
+    @media (max-width: 480px) {
+      button {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
-<body>
- 
-  <div class="container">
-   
-    <h2><span>Login<span></h2>
-    
-    
-    
-    <form id="loginForm">
-     
-      <input type="text" id="username" placeholder="Usuário" required>
-      <input type="password" id="password" placeholder="Senha" required>
-      <button type="submit" id="login-btn">Entrar</button>
-    </form>
+
+<!-- Modal Vizinho -->
+<div id="popupVizinho" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; z-index:999;">
+  <div style="background:#fff; padding:20px; border-radius:10px; width:90%; max-width:400px; position:relative;" data-theme="light">
+    <h3 style="margin-top:0;">Entrega no Vizinho</h3>
+    <label>Nome do Vizinho:</label>
+    <input type="text" id="nomeVizinho" placeholder="Ex: Sr. João" style="width:100%; padding:10px; margin-bottom:10px;" />
+    <label>Número da Residência:</label>
+    <input type="text" id="numeroResidencia" placeholder="Ex: 45" style="width:100%; padding:10px; margin-bottom:10px;" />
+    <input type="hidden" id="numeroOriginal" />
+    <div style="text-align:right;">
+      <button onclick="enviarVizinho()" class="btn-primary" style="margin-right:10px;">Enviar</button>
+      <button onclick="fecharPopup()" class="btn-delete">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<body data-theme="light">
+
+  <div class="theme-toggle">
+    <button class="btn-secondary" onclick="alternarTema()">
+      <i class="fa-solid fa-circle-half-stroke"></i> Alternar Tema
+    </button>
+  </div>
+
+  <div class="form-section">
+    <h2><i class="fa-solid fa-truck-fast"></i> Notificação Shopee</h2>
+    <label for="numero">Número com DDD:</label>
+    <input type="tel" id="numero" placeholder="Ex: 11999998888" />
+    <div class="btn-group">
+      <button class="btn-primary" onclick="enviarMensagem()">
+        <i class="fa-solid fa-location-arrow"></i> Estou a caminho
+      </button>
+      <button class="btn-secondary" onclick="mostrarHistorico()">
+        <i class="fa-solid fa-clock-rotate-left"></i> Histórico
+      </button>
+    </div>
+  </div>
+
+  <div id="historico" class="historico-section" style="display: none;">
+    <h3><i class="fa-solid fa-list"></i> Mensagens Enviadas</h3>
+    <input type="text" id="busca" placeholder="Buscar por número..." oninput="mostrarHistorico()" />
+    <div id="listaHistorico"></div>
+    <button class="btn-delete" onclick="excluirSelecionados()">
+      <i class="fa-solid fa-trash"></i> Excluir Selecionados
+    </button>
   </div>
 
   <script>
-  	
-  	
-  	const usernameInput = document.querySelector("#username");
-const passwordInput = document.querySelector("#password");
+    function alternarTema() {
+      const body = document.body;
+      const atual = body.getAttribute("data-theme");
+      body.setAttribute("data-theme", atual === "light" ? "dark" : "light");
+    }
 
-usernameInput.addEventListener("focus", () => {
-	usernameInput.removeAttribute("placeholder");
-});
+    function enviarMensagem() {
+      let numero = document.getElementById("numero").value.replace(/\D/g, "");
+      if (numero.length < 10 || numero.length > 11) {
+        alert("Digite um número válido com DDD.");
+        return;
+      }
 
-usernameInput.addEventListener("blur", () => {
-	if (!usernameInput.value) {
-		usernameInput.setAttribute("placeholder", "Usuário");
-	}
-});
+      numero = "55" + numero;
+      const template = `👋🏼 Olá, sou entregadora da Shopee.\n\n📦 📌 *Estou passando para avisar que a sua encomenda já está a caminho*.\n\n👀 Fique de olho, em breve ela estará com você!\n\n❗Caso necessite de algum suporte referente a sua encomenda, entre em contato através desse whatsapp.`;
+      const link = `https://wa.me/${numero}?text=${encodeURIComponent(template)}`;
+      window.open(link, '_blank');
 
-passwordInput.addEventListener("focus", () => {
-	passwordInput.removeAttribute("placeholder");
-});
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          const endereco = await obterEndereco(lat, lng);
+          salvarHistorico(numero, endereco, lat, lng);
+        }, () => {
+          salvarHistorico(numero, "Localização não permitida", null, null);
+        });
+      } else {
+        salvarHistorico(numero, "Geolocalização não suportada", null, null);
+      }
+    }
 
-passwordInput.addEventListener("blur", () => {
-	if (!passwordInput.value) {
-		passwordInput.setAttribute("placeholder", "Senha");
-	}
-});
+    async function obterEndereco(lat, lng) {
+      const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&accept-language=pt-BR`;
+      const res = await fetch(url, {
+        headers: { 'User-Agent': 'Shopee-App-Mobile' }
+      });
+      const data = await res.json();
+      return data.display_name || "Endereço não encontrado";
+    }
 
-usernameInput.addEventListener("focus", () => {
-	usernameInput.classList.add("blinking");
-});
+    function salvarHistorico(numero, endereco, lat, lng) {
+      const agora = new Date().toLocaleString("pt-BR");
+      const mapsLink = lat && lng ? `https://www.google.com/maps?q=${lat},${lng}` : "";
+      const historico = JSON.parse(localStorage.getItem("historicoEnvios")) || [];
+      historico.unshift({ id: Date.now(), numero, data: agora, endereco, mapsLink });
+      localStorage.setItem("historicoEnvios", JSON.stringify(historico));
+    }
 
-usernameInput.addEventListener("blur", () => {
-	usernameInput.classList.remove("blinking");
-});
+    function mostrarHistorico() {
+      const lista = document.getElementById("listaHistorico");
+      const termoBusca = document.getElementById("busca").value.toLowerCase();
+      const historico = JSON.parse(localStorage.getItem("historicoEnvios")) || [];
+      document.getElementById("historico").style.display = "block";
+      lista.innerHTML = historico
+        .filter(item => item.numero.includes(termoBusca))
+        .map(item => `
+        <div class="registro">
+          <input type="checkbox" data-id="${item.id}">
+          <strong>${item.numero}</strong> - ${item.data}<br>
+          ${item.endereco || ""}<br>
+          ${item.mapsLink ? `<a href="${item.mapsLink}" target="_blank" class="maps-link"><i class="fa-solid fa-map-location-dot"></i> Ver no Mapa</a>` : ""}
+          <br>
+          <button class="btn-secondary" onclick="enviarAusente('${item.numero}')">
+            <i class="fa-regular fa-bell-slash"></i> Ausente
+          </button>
+          <button class="btn-primary" onclick="abrirPopup('${item.numero}')">
+            <i class="fa-solid fa-user-group"></i> No Vizinho
+          </button>
+        </div>
+      `).join("");
+    }
 
-passwordInput.addEventListener("focus", () => {
-	passwordInput.classList.add("blinking");
-});
+    function excluirSelecionados() {
+      const checkboxes = document.querySelectorAll('.registro input[type="checkbox"]:checked');
+      const historico = JSON.parse(localStorage.getItem("historicoEnvios")) || [];
+      const idsSelecionados = Array.from(checkboxes).map(checkbox => checkbox.dataset.id);
 
-passwordInput.addEventListener("blur", () => {
-	passwordInput.classList.remove("blinking");
-});
+      const novosHistoricos = historico.filter(item => !idsSelecionados.includes(item.id.toString()));
 
-const h2Element = document.querySelector("span");
+      localStorage.setItem("historicoEnvios", JSON.stringify(novosHistoricos));
+      mostrarHistorico();
+    }
 
-usernameInput.addEventListener("focus", () => {
-	h2Element.style.color = "#0077cc";
-});
+    function abrirPopup(numeroOriginal) {
+      document.getElementById('popupVizinho').style.display = 'flex';
+      document.getElementById('numeroOriginal').value = numeroOriginal;
+      document.getElementById('nomeVizinho').value = '';
+      document.getElementById('numeroResidencia').value = '';
+    }
 
-usernameInput.addEventListener("blur", () => {
-	h2Element.style.color = "";
-});
+    function fecharPopup() {
+      document.getElementById('popupVizinho').style.display = 'none';
+    }
 
-passwordInput.addEventListener("focus", () => {
-	h2Element.style.color = "#0077cc";
-});
+    function enviarVizinho() {
+      const nome = document.getElementById('nomeVizinho').value.trim();
+      const numeroResidencia = document.getElementById('numeroResidencia').value.trim();
+      const numeroOriginal = document.getElementById('numeroOriginal').value;
 
-passwordInput.addEventListener("blur", () => {
-	h2Element.style.color = "";
-});
+      if (!nome || !numeroResidencia) {
+        alert("Preencha o nome do vizinho e o número da residência.");
+        return;
+      }
 
-const form = document.querySelector("form");
-const loginBtn = document.querySelector("#login-btn");
+      const mensagem = `👋🏼 Olá! Sua encomenda foi entregue com sucesso e *recebida pelo seu vizinho ${nome}*, residente a casa n° ${numeroResidencia}.\n\nQualquer dúvida, estamos à disposição!`;
+      const link = `https://wa.me/55${numeroOriginal}?text=${encodeURIComponent(mensagem)}`;
+      window.open(link, '_blank');
+      fecharPopup();
+    }
 
-const users = [
-	{ username: "Gui", password: "Marx", nome: "Guilherme Marques" },
-	{ username: "Augusto", password: "teste", nome: "Augusto José" },
-	
-	
-	// adicionar mais usuários
-];
+    function excluirSelecionados() {
+      const checkboxes = document.querySelectorAll('#listaHistorico input[type="checkbox"]:checked');
+      const idsSelecionados = Array.from(checkboxes).map(checkbox => checkbox.getAttribute('data-id'));
 
+      if (idsSelecionados.length === 0) {
+        alert("Selecione pelo menos um item para excluir.");
+        return;
+      }
 
+      const historico = JSON.parse(localStorage.getItem("historicoEnvios")) || [];
+      const historicoAtualizado = historico.filter(item => !idsSelecionados.includes(item.id.toString()));
+      localStorage.setItem("historicoEnvios", JSON.stringify(historicoAtualizado));
 
-// Função para criar uma chave única com base no nome de usuário
-function getStorageKey(username, key) {
-	return `${username}_${key}`;
+      // Atualizar o histórico exibido
+      mostrarHistorico();
+    }
+    
+function enviarAusente(numeroOriginal) {
+  if (!numeroOriginal) {
+    alert("Número do destinatário não encontrado.");
+    return;
+  }
+  
+  const mensagem = `Olá! 
+
+❗Passamos para realizar a entrega da sua encomenda. *mas não havia ninguém em sua residência para receber.*
+
+✅ Para evitar o retorno ao centro de distribuição em Campinas e um possível atraso, optamos por efetuar a entrega com muito cuidado.
+
+Caso tenha qualquer dúvida, estamos à disposição para ajudar!`;
+  
+  const link = `https://wa.me/55${numeroOriginal}?text=${encodeURIComponent(mensagem)}`;
+  window.open(link, '_blank');
 }
-
-
-form.addEventListener("submit", (e) => {
-	e.preventDefault();
-	
-	const username = form.username.value.trim();
-	const password = form.password.value.trim();
-	
-	let authenticated = false;
-	let loggedInUser = null;
-	
-	for (let user of users) {
-		if (user.username === username && user.password === password) {
-			authenticated = true;
-			loggedInUser = user;
-			break;
-		}
-	}
-	
-	if (authenticated) {
-		document.body.classList.add("blur");
-		setTimeout(function() {
-			window.location.href = "system.html";
-		}, 500);
-		
-		sessionStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
-	} else if (username === "" || password === "") {
-		alert("Por favor, insira um nome de usuário e senha");
-	} else {
-		alert("Usuário ou senha incorretos");
-		form.reset();
-	}
-});
-  	
-  	
-  </script>
-</body>
-</html>
+    
+    </script>
+    </body>
+    </html>
