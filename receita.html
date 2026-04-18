@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Chef de Resgate 🍳</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9966, #ff5e62);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #ff5e62;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e14b4f;
+    }
+
+    .resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      white-space: pre-wrap;
+    }
+
+    .acoes {
+      display: flex;
+      gap: 10px;
+    }
+
+    .acoes button {
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>🍳 Chef de Resgate</h1>
+  <p>Transforme sobras em um banquete!</p>
+
+  <input id="ing1" placeholder="Ingrediente 1">
+  <input id="ing2" placeholder="Ingrediente 2">
+  <input id="ing3" placeholder="Ingrediente 3">
+
+  <button onclick="gerarReceita()">Gerar Receita</button>
+
+  <div id="resultado" class="resultado" style="display:none;"></div>
+
+  <div class="acoes" id="acoes" style="display:none;">
+    <button onclick="copiarReceita()">📋 Copiar</button>
+    <button onclick="enviarWhats()">📲 WhatsApp</button>
+  </div>
+</div>
+
+<script>
+function gerarNome(ingredientes) {
+  const nomes = [
+    "Surpresa do Chef Desesperado",
+    "Mistureba Gourmet",
+    "Explosão de Geladeira",
+    "Delícia Improvisada",
+    "MasterChef das Sobras",
+    "Prato do Apocalipse Saboroso"
+  ];
+  return nomes[Math.floor(Math.random() * nomes.length)] + " com " + ingredientes.join(", ");
+}
+
+function gerarReceitaTexto(ing) {
+  return `
+🍽️ ${gerarNome(ing)}
+
+🧾 Ingredientes:
+- ${ing[0]}
+- ${ing[1]}
+- ${ing[2]}
+
+👨‍🍳 Modo de preparo:
+1. Pegue todos os ingredientes e encare com coragem.
+2. Corte tudo de forma duvidosa, mas com estilo.
+3. Misture em uma panela ou frigideira como se soubesse o que está fazendo.
+4. Tempere com sal, pimenta e esperança.
+5. Cozinhe até parecer comestível.
+6. Sirva com confiança absurda.
+
+🔥 Dica do Chef:
+Se der errado, diga que é "culinária experimental".
+`;
+}
+
+function gerarReceita() {
+  const ing1 = document.getElementById("ing1").value.trim();
+  const ing2 = document.getElementById("ing2").value.trim();
+  const ing3 = document.getElementById("ing3").value.trim();
+
+  if (!ing1 || !ing2 || !ing3) {
+    alert("Preencha os 3 ingredientes!");
+    return;
+  }
+
+  const receita = gerarReceitaTexto([ing1, ing2, ing3]);
+
+  document.getElementById("resultado").innerText = receita;
+  document.getElementById("resultado").style.display = "block";
+  document.getElementById("acoes").style.display = "flex";
+}
+
+function copiarReceita() {
+  const texto = document.getElementById("resultado").innerText;
+  navigator.clipboard.writeText(texto);
+  alert("Receita copiada!");
+}
+
+function enviarWhats() {
+  const texto = document.getElementById("resultado").innerText;
+  const url = "https://wa.me/?text=" + encodeURIComponent(texto);
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
